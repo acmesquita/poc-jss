@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTheme } from '../Theme'
+import { useTheme } from '../../context'
 import { useStyles } from './style'
 
 export const Button = ({ children }) => {

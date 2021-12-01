@@ -1,4 +1,5 @@
-import { Button, Theme, Typography } from './components'
+import { Button, Typography } from './components'
+import { Theme } from './context'
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { createTheming } from 'react-jss'
-import { themeDefault } from './theme'
+import { themeDefault } from '../../styles/theme'
 import { ConfigProvider } from '../ConfigProvider'
 
 const ThemeContext = React.createContext({})
