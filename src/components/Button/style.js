@@ -1,10 +1,10 @@
-import { createUseStyles } from 'react-jss'
+import { makeStyles } from '../../hooks'
 
-export const useStyles = createUseStyles({
+export const useStyles = makeStyles({
   btn: {
-    background: 'greenyellow'
+    background: ({theme}) => theme.colorPrimary
   },
   label: {
-    color: 'white'
+    color: ({theme}) => theme.colorSecundary
   },
-}, {name: 'Button'})
+})
