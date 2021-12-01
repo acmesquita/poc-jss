@@ -1,17 +1,20 @@
 import React from 'react'
-import { createTheming } from 'react-jss'
+import { createTheming, JssProvider } from 'react-jss'
 import { themeDefault } from './theme'
 
 const ThemeContext = React.createContext({})
 const theming = createTheming(ThemeContext)
 const { ThemeProvider, useTheme } = theming
 
+const generateId = (rule) => `vindi-${rule.key}-${Math.floor(Math.random() * 5000)}`
 
 function Theme({ theme = {}, children }) {
   return (
-    <ThemeProvider theme={{...theme, ...themeDefault}}>
-      {children}
-    </ThemeProvider>
+    <JssProvider generateId={generateId}>
+      <ThemeProvider theme={{...theme, ...themeDefault}}>
+        {children}
+      </ThemeProvider>
+    </JssProvider>
   )
 }
 
