@@ -49,7 +49,7 @@ function Button({ children }) {
 
 ```jsx
 import { makeStyles } from 'src/hook'
-import { useTheme } from 'src/components'
+import { useTheme } from 'src/context'
 
 function Button({ children }) {
   const theme = useTheme()
