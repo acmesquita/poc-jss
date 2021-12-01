@@ -1,6 +1,8 @@
+import { Button } from './components'
+
 function App() {
   return (
-    <h1>Hello JSS</h1>
+    <Button>Hello JSS</Button>
   );
 }
 
