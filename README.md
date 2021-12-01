@@ -11,6 +11,17 @@ This POC is to understand how the JSS library works and how we could use its fun
 
 ### Getting Starting
 
+### Start project
+
+```bash
+yarn install
+yarn start
+```
+
+Go to http://localhost:3000.
+
+### How to use
+
 The `Theme` component wraps the entire application, it works as a style provider for the components, which you can use via the `useTheme` hook.
 
 ```jsx
