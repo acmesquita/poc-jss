@@ -3,9 +3,7 @@ import { useTheme } from '../Theme'
 import { useStyles} from './styles'
 
 export const Typography = ({ variant, children }) => {
-  const theme = useTheme()
-  console.log(theme)
-  const classes = useStyles({ theme })
+  const classes = useStyles({ theme: useTheme() })
   
   switch (variant) {
     case 'h1': return <h1 className={classes[variant]}>{children}</h1>
