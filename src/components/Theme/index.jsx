@@ -6,7 +6,7 @@ const ThemeContext = React.createContext({})
 const theming = createTheming(ThemeContext)
 const { ThemeProvider, useTheme } = theming
 
-const generateId = (rule) => `vindi-${rule.key}-${Math.floor(Math.random() * 5000)}`
+const generateId = (rule) => `prisma-${rule.key}-${Math.floor(Math.random() * 5000)}`
 
 function Theme({ theme = {}, children }) {
   return (
