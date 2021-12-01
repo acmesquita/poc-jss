@@ -1,7 +1,7 @@
 import React from 'react'
-import { useStyles } from './styles'
+import { useStyles } from './style'
 
-export const Button = (props) => {
+export const Button = ({ children }) => {
   const classes = useStyles()
 
   return (
