@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# POC use JSS to React Components
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This POC is to understand how the JSS library works and how we could use its functionalities to generate a modular CSS.
 
-## Available Scripts
+### Study Requirements
 
-In the project directory, you can run:
+- [x] Use basic to `createUseStyles`
+- [x] Hook creation for abstraction of creating a themed styling (`makeStyle`)
+- [x] Customize components using theme settings
+- [x] Abstraction for creating random names for classes
 
-### `yarn start`
+### Getting Starting
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The `Theme` component wraps the entire application, it works as a style provider for the components, which you can use via the `useTheme` hook.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```jsx
+<Theme>
+  // Wrap all application
+</Theme>
+```
 
-### `yarn test`
+Also, the main helper function is `makeStyles`. This function is responsible for transforming javascript objects into CSS classes. To use it, just import and execute the return function.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```jsx
+import { makeStyles } from 'src/hook'
 
-### `yarn build`
+function Button({ children }) {
+  const useStyles = makeStyles({
+    wrap: {
+      backgroundColor: 'green'
+    },
+    label: {
+      color: 'white'
+    }
+  })
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  const classes = useStyles()
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  return (
+    <button className={classes.wrap}>
+      <span className={classes.label}>{children}</span>
+    </button>
+  )
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `yarn eject`
+#### Example with `useTheme`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```jsx
+import { makeStyles } from 'src/hook'
+import { useTheme } from 'src/components'
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+function Button({ children }) {
+  const theme = useTheme()
+  const useStyles = makeStyles({
+    wrap: {
+      backgroundColor: ({ theme }) => theme.colorPrimary
+    },
+    label: {
+      color: 'white'
+    }
+  })
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  const classes = useStyles({ theme })
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  return (
+    <button className={classes.wrap}>
+      <span className={classes.label}>{children}</span>
+    </button>
+  )
+}
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
