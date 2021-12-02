@@ -3,8 +3,7 @@ import { useTheme } from '../../context'
 import { useStyles } from './style'
 
 export const Button = ({ children }) => {
-  const theme = useTheme()
-  const classes = useStyles({ theme })
+  const classes = useStyles({ theme: useTheme()})
 
   return (
     <button className={classes.btn}>
